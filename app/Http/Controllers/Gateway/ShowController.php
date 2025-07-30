@@ -6,10 +6,11 @@ namespace App\Http\Controllers\Gateway;
 
 use App\DTO\Show;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Gateway\Interfaces\ShowControllerInterface;
 use App\Services\Interfaces\GatewayInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class ShowController extends Controller
+class ShowController extends Controller implements ShowControllerInterface
 {
     public function index(GatewayInterface $gateway): JsonResponse
     {

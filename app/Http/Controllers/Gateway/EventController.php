@@ -6,11 +6,12 @@ namespace App\Http\Controllers\Gateway;
 
 use App\DTO\Event;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Gateway\Interfaces\EventControllerInterface;
 use App\Http\Requests\ReserveRequest;
 use App\Services\Interfaces\GatewayInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class EventController extends Controller
+class EventController extends Controller implements EventControllerInterface
 {
     public function show(GatewayInterface $gateway, int $id): JsonResponse
     {

@@ -1,0 +1,252 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Test gateway",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/events/{event_id}": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "description": "Список мест для мероприятия",
+                "operationId": "a8331bcea0d35e429ab4191729320a22",
+                "parameters": [
+                    {
+                        "name": "eventID",
+                        "in": "path",
+                        "description": "event ID",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "default": true
+                                        },
+                                        "event_places": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "x": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "y": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "width": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "height": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "is_available": {
+                                                        "type": "boolean",
+                                                        "example": true
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/{event_id}/reserve": {
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "operationId": "dee9e4d2f51a8c2469cf8e56d02d9778",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Customer name",
+                                        "type": "string",
+                                        "example": "Name"
+                                    },
+                                    "places": {
+                                        "description": "array of places numbers",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "example": [
+                                            1,
+                                            2,
+                                            3
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "default": true
+                                        },
+                                        "reserve_number": {
+                                            "type": "string",
+                                            "example": "688a8e0c35b44"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/shows": {
+            "get": {
+                "tags": [
+                    "Show"
+                ],
+                "description": "Список мероприятий",
+                "operationId": "34534811673f16df5380b5a5550588b0",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "default": true
+                                        },
+                                        "shows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Show #1"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/shows/{show_id}": {
+            "get": {
+                "tags": [
+                    "Show"
+                ],
+                "description": "Список событий мероприятия",
+                "operationId": "1ec7c7f4a8c0e5e45a56196a40918f25",
+                "parameters": [
+                    {
+                        "name": "showID",
+                        "in": "path",
+                        "description": "show ID",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "default": true
+                                        },
+                                        "show_events": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "show_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "example": "2025-08-01 00:20:02"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Event",
+            "description": "Event"
+        },
+        {
+            "name": "Show",
+            "description": "Show"
+        }
+    ]
+}

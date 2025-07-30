@@ -14,3 +14,7 @@ cache:
 
 test:
 	$(sail) php artisan test
+
+docs:
+	$(sail) php artisan l5-swagger:generate
+
